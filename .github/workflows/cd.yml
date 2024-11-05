@@ -1,0 +1,35 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.12.2' # Cambia a tu versión de Node.js
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build # Si tienes un script de build en tu package.json
+
+      - name: Deploy to Server
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }} # Agrega más variables de entorno según sea necesario
+        run: |
+          # Aquí agrega los comandos para desplegar tu aplicación.
+          # Por ejemplo, si usas Heroku:
+          # git remote add heroku https://git.heroku.com/your-heroku-app.git
+          # git push heroku main
+          
+          # Si estás usando otro método de despliegue, como un servidor VPS o un servicio diferente, agrega los comandos apropiados.
