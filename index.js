@@ -38,3 +38,4 @@ const inicializarHabitaciones = async () => {
     console.error('Error al inicializar habitaciones:', error);
   }
 };
+

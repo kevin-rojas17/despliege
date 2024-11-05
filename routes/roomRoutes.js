@@ -26,5 +26,14 @@ router.get('/habitaciones/:id', async (req, res) => {
       res.status(500).json({ message: 'Error al obtener la disponibilidad' });
     }
 });  
+router.get('/habitaciones', async (req, res) => {
+    console.log('Solicitud recibida en /api/habitaciones'); // Agrega esta línea
+    try {
+      const habitaciones = await Room.find();
+      res.json(habitaciones);
+    } catch (error) {
+      res.status(500).json({ message: 'Error al obtener las habitaciones' });
+    }
+});  
 
 module.exports = router;
